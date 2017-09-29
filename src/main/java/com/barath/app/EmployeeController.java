@@ -21,7 +21,7 @@ public class EmployeeController {
         return employeeService.saveEmployee(employee);
     }
 
-    @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/create/many",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Employee> createEmployees(@RequestBody List<Employee> employees){
         return employeeService.saveEmployees(employees);
     }

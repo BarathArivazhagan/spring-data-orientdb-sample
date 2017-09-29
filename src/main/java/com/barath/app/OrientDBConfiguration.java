@@ -3,11 +3,16 @@ package com.barath.app;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.orient.commons.core.OrientTransactionManager;
 import org.springframework.data.orient.commons.repository.config.EnableOrientRepositories;
+import org.springframework.data.orient.object.OrientObjectDatabaseFactory;
+import org.springframework.data.orient.object.OrientObjectTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.annotation.PostConstruct;
+
 @Configuration
-@EnableTransactionManagement
+//@EnableTransactionManagement
 @EnableOrientRepositories(basePackages = "com.barath.app")
 public class OrientDBConfiguration {
 
@@ -15,9 +20,9 @@ public class OrientDBConfiguration {
     public OrientObjectDatabaseFactory factory() {
         OrientObjectDatabaseFactory factory =  new OrientObjectDatabaseFactory();
 
-        factory.setUrl("remote:127.0.0.1/GratefulDeadConcerts");
-        factory.setUsername("admin");
-        factory.setPassword("admin");
+        factory.setUrl("remote:localhost/testdb2");
+        factory.setUsername("root");
+        factory.setPassword("root");
 
         return factory;
     }
@@ -35,6 +40,6 @@ public class OrientDBConfiguration {
 
     @PostConstruct
     public void registerEntities() {
-        factory().db().getEntityManager().registerEntityClass(Person.class);
+        factory().db().getEntityManager().registerEntityClass(Employee.class);
     }
 }
